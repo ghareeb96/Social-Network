@@ -1,0 +1,34 @@
+.posts {
+    // background: rgba(0, 0, 0, 0.664);
+    padding: 1rem;
+
+    .post {
+        border: 2px solid white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: rgba(131, 131, 131, 0.548);
+        margin: 10px;
+        width: 70%;
+        border-radius: 10px;
+
+
+        p {
+            font-size: 20px;
+            text-align: justify;
+            width: 70%;
+        }
+
+        .btns {
+            display: flex;
+
+            button {
+                padding: 0.7rem;
+                font-size: 12px;
+                height: 40px;
+            }
+        }
+
+    }
+}
