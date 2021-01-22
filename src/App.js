@@ -17,23 +17,40 @@ function App() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [initPosts, setInitPosts] = useState([]);
   const [postText, setPostText] = useState("");
+  // const [postId, setPostId] = useState(0);
+  // const [initPosts, setInitPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  // const [newPosts, setNewPosts] = useState([]);
+  // const [change, setChange] = useState(false)
 
 
-  const getSnap = () => {
-    database.child("users").on("value", (snapshot) => {
-      setUsers(snapshot.val())
-    })
+  const addPost = () => {
+    // setChange(true)
+    if (postText !== "") {
+
+      //         setNewPosts(postsArr);
+      //         setPostText("")
+      //         setChange(false)
+
+      database.child(`users/${userKey}/posts`).push(
+        {
+          body: postText,
+          // id: postId
+        }
+      )
+
+    }
   }
-  const getInitialPosts = async () => {
-    let rnd = Math.floor(Math.random() * (10 - 1 + 1) + 1) + 1;
-    fetch(`https://jsonplaceholder.typicode.com/posts?userId=${rnd}`)
-      .then(res => res.json())
-      .then(data => {
-        setInitPosts(data)
-      })
-  }
+
+  // const getInitialPosts = async () => {
+  //   let rnd = Math.floor(Math.random() * (10 - 1 + 1) + 1) + 1;
+  //   fetch(`https://jsonplaceholder.typicode.com/posts?userId=${rnd}`)
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setInitPosts(data)
+  //     })
+  // }
   const authListener = () => {
     firebaseDB.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -56,32 +73,29 @@ function App() {
     setEmailError("");
     setPasswordError("");
   }
-
   const handleSignUp = () => {
     clearErrors();
     setFirstLogin(true)
     setInitUser({
       name: name,
       email: email,
-      posts: initPosts
+      posts: []
     })
-    if (initPosts) {
-      firebaseDB.auth().createUserWithEmailAndPassword(email, password)
-        .catch(err => {
-          switch (err.code) {
-            case "auth/invalid-email":
-            case "auth/email-already-in-use":
-              setEmailError(err.message);
-              break;
-            case "auth/weak-password":
-              setPasswordError(err.message);
-              break;
-          }
-        })
-    }
+
+    firebaseDB.auth().createUserWithEmailAndPassword(email, password)
+      .catch(err => {
+        switch (err.code) {
+          case "auth/invalid-email":
+          case "auth/email-already-in-use":
+            setEmailError(err.message);
+            break;
+          case "auth/weak-password":
+            setPasswordError(err.message);
+            break;
+        }
+      })
+
   }
-
-
   const handleLogin = () => {
     clearErrors();
     setFirstLogin(false)
@@ -100,13 +114,51 @@ function App() {
       })
 
   }
+  useEffect(() => {
+    database.child("users").on("value", (snapshot) => {
+      if (snapshot.val() !== null) {
+        setUsers(snapshot.val())
+      }
+    })
+    authListener();
+  }, [])
 
   useEffect(() => {
-    authListener();
+    if (userKey) {
+      database.child(`users/${userKey}/posts`).on("value", (snapshot) => {
+        let postsArr = snapshot.val();
+        if (postsArr !== null) {
+          // let newId = (postsArr[postsArr.length - 1].id) + 1;
+          // setPostId(newId);
+          console.log(postsArr)
+          setCurrentUser({
+            name: currentUser.name,
+            email: currentUser.email,
+            posts: postsArr
+          })
 
-    getInitialPosts();
-    getSnap();
-  }, [])
+        }
+      })
+    }
+  }, [userKey])
+
+  // useEffect(() => {
+  //   if (newPosts.length !== 0) {
+  //     setCurrentUser({
+  // name: currentUser.name,
+  // email: currentUser.email,
+  // posts: newPosts
+  //     })
+  //     // setChange(true);
+  //   }
+  // }, [newPosts])
+
+  // useEffect(() => {
+  //   if (change) {
+  //     setChange(false)
+  //     database.child(`users/${userKey}`).set(currentUser)
+  //   }
+  // }, [currentUser])
 
   return (
     <div className="App">
@@ -116,16 +168,16 @@ function App() {
           <Home
             initUser={initUser}
             setFirstLogin={setFirstLogin}
-            initPosts={initPosts}
+            // initPosts={initPosts}
             database={database}
             isFirstLogin={isFirstLogin}
             handleLogout={handleLogout}
             users={users}
             loggedUser={loggedUser}
-            // addPost={addPost}
             setUserKey={setUserKey}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+            addPost={addPost}
             postText={postText}
             setPostText={setPostText}
           // posts={posts}

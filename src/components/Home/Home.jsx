@@ -70,7 +70,7 @@ const Home = (props) => {
 
                             <button
                                 className="add"
-                            // onClick={props.addPost}
+                                onClick={() => { props.addPost() }}
                             >
                                 Post</button>
                         </div>
@@ -79,19 +79,30 @@ const Home = (props) => {
                         <Posts
                             posts={props.currentUser.posts}
                             deletePost={deletePost}
-                            editPost={editPost} />
+                            editPost={editPost}
+                        />
 
 
                     </div>
                     <div className="users">
-                        {Object.values(props.users).map(item =>
-                            <a href="#" className="link">{item.name}</a>
-                        )}
+                        {props.users ?
+
+                            Object.values(props.users).map(item =>
+                                <a href="#" className="link">{item.name}</a>
+                            )
+
+                            :
+                            ""
+                        }
                     </div>
+
+
+
                 </>
                 )
                 :
-                ""}
+                ""
+            }
         </div >
 
     )
