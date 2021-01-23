@@ -21,17 +21,11 @@ function App() {
 
 
   const addPost = () => {
-    // setChange(true)
     if (postText !== "") {
-
-      //         setNewPosts(postsArr);
-      //         setPostText("")
-      //         setChange(false)
 
       database.child(`users/${userKey}/posts`).push(
         {
           body: postText,
-          // id: postId
         }
       )
       setPostText("")
@@ -141,6 +135,7 @@ function App() {
             users={users}
             loggedUser={loggedUser}
             setUserKey={setUserKey}
+            userKey={userKey}
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
             addPost={addPost}

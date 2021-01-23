@@ -14,16 +14,15 @@ const Home = (props) => {
         console.log(e)
     }
     const deletePost = (e) => {
-        console.log(e)
         if (window.confirm("Are you sure you want to delete this post ?")) {
-            props.database.child(`users/posts`).remove()
-            // .remove(
-            // err => {
-            //     if (err) {
-            //         console.log(err)
-            //     }
-            // }
-            // )
+            props.database.child(`users/${props.userKey}/posts/${e}`)
+                .remove(
+                    err => {
+                        if (err) {
+                            console.log(err)
+                        }
+                    }
+                )
         }
     }
     const saveUser = () => {
