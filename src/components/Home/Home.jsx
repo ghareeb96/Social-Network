@@ -10,11 +10,21 @@ const Home = (props) => {
 
 
 
-    const editPost = () => {
-
+    const editPost = (e) => {
+        console.log(e)
     }
-    const deletePost = () => {
-
+    const deletePost = (e) => {
+        console.log(e)
+        if (window.confirm("Are you sure you want to delete this post ?")) {
+            props.database.child(`users/posts`).remove()
+            // .remove(
+            // err => {
+            //     if (err) {
+            //         console.log(err)
+            //     }
+            // }
+            // )
+        }
     }
     const saveUser = () => {
         props.database.child("users").push(props.initUser);
@@ -36,7 +46,6 @@ const Home = (props) => {
                             props.setCurrentUser(value)
                             props.setUserKey(key)
                             setGotUser(true);
-                            // console.log(value.email)
                         }
                     }
                 }
@@ -86,11 +95,11 @@ const Home = (props) => {
                     </div>
                     <div className="users">
                         {props.users ?
-
-                            Object.values(props.users).map(item =>
-                                <a href="#" className="link">{item.name}</a>
-                            )
-
+                            Object.entries(props.users)
+                                .filter((item) => item[1].email !== props.currentUser.email)
+                                .map((item) =>
+                                    <a href="#" className="link" key={item[0]}>{item[1].name}</a>
+                                )
                             :
                             ""
                         }

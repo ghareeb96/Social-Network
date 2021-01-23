@@ -18,11 +18,6 @@ function App() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [postText, setPostText] = useState("");
-  // const [postId, setPostId] = useState(0);
-  // const [initPosts, setInitPosts] = useState([]);
-  // const [posts, setPosts] = useState([]);
-  // const [newPosts, setNewPosts] = useState([]);
-  // const [change, setChange] = useState(false)
 
 
   const addPost = () => {
@@ -39,18 +34,10 @@ function App() {
           // id: postId
         }
       )
+      setPostText("")
 
     }
   }
-
-  // const getInitialPosts = async () => {
-  //   let rnd = Math.floor(Math.random() * (10 - 1 + 1) + 1) + 1;
-  //   fetch(`https://jsonplaceholder.typicode.com/posts?userId=${rnd}`)
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setInitPosts(data)
-  //     })
-  // }
   const authListener = () => {
     firebaseDB.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -62,6 +49,7 @@ function App() {
     })
   }
   const handleLogout = () => {
+
     firebaseDB.auth().signOut();
   }
   const clearInput = () => {
@@ -128,9 +116,6 @@ function App() {
       database.child(`users/${userKey}/posts`).on("value", (snapshot) => {
         let postsArr = snapshot.val();
         if (postsArr !== null) {
-          // let newId = (postsArr[postsArr.length - 1].id) + 1;
-          // setPostId(newId);
-          // console.log(postsArr)
           setCurrentUser({
             name: currentUser.name,
             email: currentUser.email,
@@ -142,24 +127,6 @@ function App() {
     }
   }, [userKey])
 
-  // useEffect(() => {
-  //   if (newPosts.length !== 0) {
-  //     setCurrentUser({
-  // name: currentUser.name,
-  // email: currentUser.email,
-  // posts: newPosts
-  //     })
-  //     // setChange(true);
-  //   }
-  // }, [newPosts])
-
-  // useEffect(() => {
-  //   if (change) {
-  //     setChange(false)
-  //     database.child(`users/${userKey}`).set(currentUser)
-  //   }
-  // }, [currentUser])
-
   return (
     <div className="App">
       {loggedUser ?
@@ -168,7 +135,6 @@ function App() {
           <Home
             initUser={initUser}
             setFirstLogin={setFirstLogin}
-            // initPosts={initPosts}
             database={database}
             isFirstLogin={isFirstLogin}
             handleLogout={handleLogout}
@@ -180,7 +146,6 @@ function App() {
             addPost={addPost}
             postText={postText}
             setPostText={setPostText}
-          // posts={posts}
           />
         )
         :
@@ -194,8 +159,6 @@ function App() {
             setPassword={setPassword}
             handleLogin={handleLogin}
             handleSignUp={handleSignUp}
-            // hasAccount={hasAccount}
-            // setHasAccount={setHasAccount}
             emailError={emailError}
             passwordError={passwordError}
             clearErrors={clearErrors}
