@@ -130,7 +130,7 @@ function App() {
         if (postsArr !== null) {
           // let newId = (postsArr[postsArr.length - 1].id) + 1;
           // setPostId(newId);
-          console.log(postsArr)
+          // console.log(postsArr)
           setCurrentUser({
             name: currentUser.name,
             email: currentUser.email,
