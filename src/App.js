@@ -21,11 +21,19 @@ function App() {
 
 
   const addPost = () => {
-    if (postText !== "") {
+    if (postText.trim() !== "") {
+      const date = new Date();
 
       database.child(`users/${userKey}/posts`).push(
         {
           body: postText,
+          date: date.toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+            weekday: "short",
+            month: "short",
+            year: "numeric"
+          })
         }
       )
       setPostText("")
@@ -61,7 +69,7 @@ function App() {
     setInitUser({
       name: name,
       email: email,
-      posts: []
+      posts: {}
     })
 
     firebaseDB.auth().createUserWithEmailAndPassword(email, password)
@@ -110,12 +118,18 @@ function App() {
       database.child(`users/${userKey}/posts`).on("value", (snapshot) => {
         let postsArr = snapshot.val();
         if (postsArr !== null) {
+          console.log(postsArr)
           setCurrentUser({
             name: currentUser.name,
             email: currentUser.email,
             posts: postsArr
           })
-
+        } else {
+          setCurrentUser({
+            name: currentUser.name,
+            email: currentUser.email,
+            posts: {}
+          })
         }
       })
     }

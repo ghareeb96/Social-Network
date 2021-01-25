@@ -10,7 +10,8 @@ const Posts = (props) => {
             for (const [key, value] of Object.entries(props.posts)) {
                 let post = {
                     id: key,
-                    body: value.body
+                    body: value.body,
+                    date: value.date
                 }
                 newPosts.push(post)
             }
@@ -30,6 +31,7 @@ const Posts = (props) => {
                             key={item.id}
                         >
                             <p>{item.body}</p>
+                            <span className="date">{item.date}</span>
                             <div className="btns">
                                 <button
                                     className="delete"
