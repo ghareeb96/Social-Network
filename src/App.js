@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './App.scss';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import firebaseDB from "./firebase";
 import RegLog from "./components/reg-log/reg-log";
 import Home from "./components/Home/Home";
@@ -51,8 +57,8 @@ function App() {
     })
   }
   const handleLogout = () => {
-
     firebaseDB.auth().signOut();
+    setloggedUser("")
   }
   const clearInput = () => {
     setName("")
@@ -135,46 +141,48 @@ function App() {
     }
   }, [userKey])
 
+
   return (
     <div className="App">
-      {loggedUser ?
-        (
-
-          <Home
-            initUser={initUser}
-            setFirstLogin={setFirstLogin}
-            database={database}
-            isFirstLogin={isFirstLogin}
-            handleLogout={handleLogout}
-            users={users}
-            loggedUser={loggedUser}
-            setUserKey={setUserKey}
-            userKey={userKey}
-            currentUser={currentUser}
-            setCurrentUser={setCurrentUser}
-            addPost={addPost}
-            postText={postText}
-            setPostText={setPostText}
-          />
-        )
-        :
-        (
-          <RegLog
-            name={name}
-            setName={setName}
-            email={email}
-            setEmail={setEmail}
-            password={password}
-            setPassword={setPassword}
-            handleLogin={handleLogin}
-            handleSignUp={handleSignUp}
-            emailError={emailError}
-            passwordError={passwordError}
-            clearErrors={clearErrors}
-            clearInput={clearInput}
-          />
-        )
-      }
+      <Router>
+        <Switch>
+          <Route exact path="/Home">
+            <Home
+              initUser={initUser}
+              setFirstLogin={setFirstLogin}
+              database={database}
+              isFirstLogin={isFirstLogin}
+              handleLogout={handleLogout}
+              users={users}
+              loggedUser={loggedUser}
+              setUserKey={setUserKey}
+              userKey={userKey}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              addPost={addPost}
+              postText={postText}
+              setPostText={setPostText}
+            />
+          </Route>
+          <Route exact path="/">
+            <RegLog
+              name={name}
+              setName={setName}
+              email={email}
+              setEmail={setEmail}
+              loggedUser={loggedUser}
+              password={password}
+              setPassword={setPassword}
+              handleLogin={handleLogin}
+              handleSignUp={handleSignUp}
+              emailError={emailError}
+              passwordError={passwordError}
+              clearErrors={clearErrors}
+              clearInput={clearInput}
+            />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
