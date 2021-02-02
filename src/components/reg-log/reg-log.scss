@@ -1,65 +1,4 @@
-$primary-color : #070a1f;
-
-h1 {
-    margin: 10px 0;
-    font-weight: bolder;
-}
-
-p {
-    font-size: 12px;
-    margin: 5px 0;
-}
-
-span {
-    font-size: 12px;
-}
-
-a {
-    color: $primary-color;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-input {
-    margin: 15px 0;
-    font-size: 14px;
-    padding: 0.5rem 0.8rem;
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid $primary-color;
-
-    &:focus {
-        outline: none;
-    }
-}
-
-button {
-    border-radius: 10px;
-    // border: 2px solid $secondary-color;
-    padding: 0.7rem 2rem;
-    font-size: 16px;
-    background: $primary-color;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: transform 80ms ease;
-    cursor: pointer;
-    margin: 10px 0;
-
-    &.ghost {
-        background: transparent;
-        border: 1px solid #fff;
-    }
-
-    &:active {
-        transform: scale(0.95);
-    }
-
-    &:focus {
-        outline: none;
-    }
-}
+@import "../mainStyles.scss";
 
 
 .reg-log {
@@ -70,7 +9,9 @@ button {
         Times,
         'Times New Roman',
         serif;
-    background-color: rgb(94, 94, 94);
+    background: url(bg.png);
+    background-position: center;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +20,6 @@ button {
     width: 100%;
 
     .container {
-        background-color: rgb(94, 94, 94);
         width: 1000px;
         max-width: 100%;
         min-height: 50vh;
@@ -96,9 +36,11 @@ button {
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: white;
+            background: $background;
 
-
+            .error {
+                color: red;
+            }
         }
 
         .form-container {
@@ -132,7 +74,7 @@ button {
             transition: transform 0.6s ease;
 
             .overlay {
-                background: $primary-color;
+                background: $fourth-color;
                 color: #fff;
                 position: relative;
                 left: -100%;

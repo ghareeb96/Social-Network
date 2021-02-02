@@ -8,7 +8,6 @@ import "./reg-log.scss";
 const RegLog = (props) => {
 
     const [toggler, setToggler] = useState("container");
-    const [logged, setLogged] = useState(false)
 
 
     if (props.loggedUser) {
@@ -22,7 +21,7 @@ const RegLog = (props) => {
                     <div className="form-container sign-up-container">
                         <form>
                             <h1>Create New Account</h1>
-                            <span>Use your E-mail for registration</span>
+                            <span>Please, Use a valid E-mail for registration</span>
                             <input
                                 onChange={(e) => props.setName(e.target.value)}
                                 type="text"
@@ -56,7 +55,7 @@ const RegLog = (props) => {
                     <div className="form-container sign-in-container">
                         <form>
                             <h1>Sign In</h1>
-                            <span>Use your account</span>
+                            <span>Use your Email</span>
                             <input
                                 onChange={(e) => props.setEmail(e.target.value)}
                                 type="email"
@@ -83,8 +82,8 @@ const RegLog = (props) => {
                     <div className="overlay-container">
                         <div className="overlay">
                             <div className="overlay-panel overlay-left">
-                                <h1>Welcome back !</h1>
-                                <p>Please, Login to keep connected</p>
+                                <h1>Already Have an Account ?</h1>
+                                <p>Sign in now</p>
                                 <button
                                     onClick={() => {
                                         props.clearErrors()
@@ -95,7 +94,7 @@ const RegLog = (props) => {
                             </div>
                             <div className="overlay-panel overlay-right">
                                 <h1>Hello Friend !</h1>
-                                <p>Start the Journey with Us !</p>
+                                <p>Sign up and Start the Journey with Us</p>
                                 <button onClick={() => {
                                     props.clearErrors()
                                     props.clearInput()
