@@ -12,6 +12,9 @@ import Home from "./components/Home/Home";
 
 function App() {
   const database = firebaseDB.database().ref();
+  const storage = firebaseDB.storage();
+
+  const [image, setImage] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [initUser, setInitUser] = useState({})
   const [loggedUser, setloggedUser] = useState('');
@@ -60,6 +63,23 @@ function App() {
     firebaseDB.auth().signOut();
     setloggedUser("")
   }
+  const upload = () => {
+    const uploadTask = storage.ref(`images/${loggedUser.email}`).put(image)
+    uploadTask.on("state_changed",
+      snapshot => { },
+      error => console.log(error),
+      () => {
+        storage
+          .ref("images")
+          .child(loggedUser.email)
+          .getDownloadURL()
+          .then(url => {
+            database.child(`users/${userKey}/profilePic`).set(url)
+          })
+      }
+
+    )
+  }
   const clearInput = () => {
     setName("")
     setEmail("");
@@ -75,6 +95,7 @@ function App() {
     setInitUser({
       name: name,
       email: email,
+      profilePic: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
       posts: {}
     })
 
@@ -119,24 +140,36 @@ function App() {
     authListener();
   }, [])
 
+  // useEffect(() => {
+  //   if (userKey) {
+  //     database.child(`users/${userKey}/posts`).on("value", (snapshot) => {
+  //       let postsArr = snapshot.val();
+  //       if (postsArr !== null) {
+  //         // console.log(postsArr)
+  //         setCurrentUser({
+  //           name: currentUser.name,
+  //           email: currentUser.email,
+  //           profilePic: currentUser.profilePic,
+  //           posts: postsArr
+  //         })
+  //       } else {
+  //         setCurrentUser({
+  //           name: currentUser.name,
+  //           email: currentUser.email,
+  //           profilePic: currentUser.profilePic,
+  //           posts: {}
+  //         })
+  //       }
+  //     })
+  //   }
+  // }, [userKey])
+
   useEffect(() => {
     if (userKey) {
-      database.child(`users/${userKey}/posts`).on("value", (snapshot) => {
-        let postsArr = snapshot.val();
-        if (postsArr !== null) {
-          console.log(postsArr)
-          setCurrentUser({
-            name: currentUser.name,
-            email: currentUser.email,
-            posts: postsArr
-          })
-        } else {
-          setCurrentUser({
-            name: currentUser.name,
-            email: currentUser.email,
-            posts: {}
-          })
-        }
+      database.child(`users/${userKey}`).on("value", (snapshot) => {
+
+        setCurrentUser(snapshot.val())
+        console.log(snapshot.val())
       })
     }
   }, [userKey])
@@ -162,6 +195,8 @@ function App() {
               addPost={addPost}
               postText={postText}
               setPostText={setPostText}
+              setImage={setImage}
+              upload={upload}
             />
           </Route>
           <Route exact path="/">

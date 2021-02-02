@@ -29,6 +29,13 @@ const Home = (props) => {
         props.database.child("users").push(props.initUser);
     }
 
+    const handleUpload = (e) => {
+        if (e.target.files[0]) {
+            props.setImage(e.target.files[0])
+        }
+    }
+
+
     useEffect(() => {
         if (props.isFirstLogin) {
             saveUser();
@@ -63,7 +70,11 @@ const Home = (props) => {
                             <h1>Welcome Back {props.currentUser.name}</h1>
                             <button onClick={props.handleLogout}>Logout</button>
                         </div>
-
+                        <div className="image">
+                            <input type="file" name="image" id="image" onChange={handleUpload} />
+                            <button onClick={props.upload}>Upload</button>
+                            <img src={props.currentUser.profilePic} alt="PP" />
+                        </div>
                         <div className="posts-container">
                             <div className="add-post">
                                 <input
