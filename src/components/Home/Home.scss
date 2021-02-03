@@ -1,51 +1,81 @@
+@import "../mainStyles.scss";
+
 .home {
-    width: 100%;
-    min-height: 100vh;
-    background-color: rgba(68, 68, 68, 0.534);
+    background: $background;
 
     .header {
-        padding: 2rem;
+        background: $primary-color;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        height: 200px;
 
-        h1 {
-            font-size: 2.5rem;
-        }
-
-        button {
-            color: white;
-        }
-
-    }
-
-    .posts-container {
-        padding: 1rem;
-
-        .add-post {
+        .welcome {
             display: flex;
+            align-items: center;
+            justify-content: center;
             width: 40%;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 2rem;
 
-            button {
-                height: 50px;
-                width: 20%;
+            h1 {
+                color: $background;
+                font-size: 2rem;
             }
 
-            textarea {
-                flex: 6;
-                background-color: rgb(185, 170, 146);
-                font-size: 16px;
-                padding: 1rem;
+            span {
+                font-size: 2rem;
+                color: $tirtiary-color;
+                text-transform: uppercase;
             }
-
-            input {
-                width: 40%;
-            }
-
         }
 
+        .image-container {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .image {
+                height: 180px;
+                width: 180px;
+                border: 2px solid $background;
+                overflow: hidden;
+                border-radius: 50%;
+                object-position: center;
+                object-fit: contain;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        .btn {
+            width: 40%;
+
+            .file-input {
+                .myfile {
+                    opacity: 0;
+                    width: 0.1px;
+                    height: 0.1px;
+                    position: absolute;
+                }
+
+                label {
+                    display: block;
+                    position: relative;
+                    width: 200px;
+                    border-radius: 10px;
+                    background: $fourth-color;
+                    padding: 0.5rem 0.8rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $background;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: transform 0.2s ease-out;
+                }
+            }
+        }
     }
 }

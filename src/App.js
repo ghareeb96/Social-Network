@@ -40,6 +40,7 @@ function App() {
             hour: "numeric",
             minute: "numeric",
             weekday: "short",
+            day: "numeric",
             month: "short",
             year: "numeric"
           })
@@ -63,23 +64,7 @@ function App() {
     firebaseDB.auth().signOut();
     setloggedUser("")
   }
-  const upload = () => {
-    const uploadTask = storage.ref(`images/${loggedUser.email}`).put(image)
-    uploadTask.on("state_changed",
-      snapshot => { },
-      error => console.log(error),
-      () => {
-        storage
-          .ref("images")
-          .child(loggedUser.email)
-          .getDownloadURL()
-          .then(url => {
-            database.child(`users/${userKey}/profilePic`).set(url)
-          })
-      }
 
-    )
-  }
   const clearInput = () => {
     setName("")
     setEmail("");
@@ -140,29 +125,29 @@ function App() {
     authListener();
   }, [])
 
-  // useEffect(() => {
-  //   if (userKey) {
-  //     database.child(`users/${userKey}/posts`).on("value", (snapshot) => {
-  //       let postsArr = snapshot.val();
-  //       if (postsArr !== null) {
-  //         // console.log(postsArr)
-  //         setCurrentUser({
-  //           name: currentUser.name,
-  //           email: currentUser.email,
-  //           profilePic: currentUser.profilePic,
-  //           posts: postsArr
-  //         })
-  //       } else {
-  //         setCurrentUser({
-  //           name: currentUser.name,
-  //           email: currentUser.email,
-  //           profilePic: currentUser.profilePic,
-  //           posts: {}
-  //         })
-  //       }
-  //     })
-  //   }
-  // }, [userKey])
+  useEffect(() => {
+    if (image !== null) {
+
+      const upload = () => {
+        const uploadTask = storage.ref(`images/${loggedUser.email}`).put(image)
+        uploadTask.on("state_changed",
+          snapshot => { },
+          error => console.log(error),
+          () => {
+            storage
+              .ref("images")
+              .child(loggedUser.email)
+              .getDownloadURL()
+              .then(url => {
+                database.child(`users/${userKey}/profilePic`).set(url)
+              })
+          }
+
+        )
+      }
+      upload();
+    }
+  }, [image])
 
   useEffect(() => {
     if (userKey) {
@@ -196,7 +181,6 @@ function App() {
               postText={postText}
               setPostText={setPostText}
               setImage={setImage}
-              upload={upload}
             />
           </Route>
           <Route exact path="/">

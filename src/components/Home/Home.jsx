@@ -67,13 +67,22 @@ const Home = (props) => {
                 {props.currentUser ?
                     (<>
                         <div className="header">
-                            <h1>Welcome Back {props.currentUser.name}</h1>
-                            <button onClick={props.handleLogout}>Logout</button>
-                        </div>
-                        <div className="image">
-                            <input type="file" name="image" id="image" onChange={handleUpload} />
-                            <button onClick={props.upload}>Upload</button>
-                            <img src={props.currentUser.profilePic} alt="PP" />
+                            <div className="welcome">
+                                <h1>Welcome <span>{props.currentUser.name}</span></h1>
+                            </div>
+                            <div className="image-container">
+                                <div className="image">
+                                    <img src={props.currentUser.profilePic} alt="PP" />
+                                </div>
+                            </div>
+                            <div className="btn">
+                                <div className="file-input">
+                                    <input type="file" id="myfile" accept="image/*" class="myfile" onChange={handleUpload} />
+                                    <label for="myfile">Change profile Picture</label>
+                                </div>
+                                {/* <button onClick={props.upload}>Upload</button> */}
+                                <button onClick={props.handleLogout}>Logout</button>
+                            </div>
                         </div>
                         <div className="posts-container">
                             <div className="add-post">
