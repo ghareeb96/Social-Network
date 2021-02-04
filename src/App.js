@@ -64,7 +64,6 @@ function App() {
     firebaseDB.auth().signOut();
     setloggedUser("")
   }
-
   const clearInput = () => {
     setName("")
     setEmail("");
@@ -116,6 +115,7 @@ function App() {
       })
 
   }
+
   useEffect(() => {
     database.child("users").on("value", (snapshot) => {
       if (snapshot.val() !== null) {

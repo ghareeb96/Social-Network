@@ -8,49 +8,47 @@
         display: flex;
         height: 200px;
 
-        .welcome {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40%;
-
-            h1 {
-                color: $background;
-                font-size: 2rem;
-            }
-
-            span {
-                font-size: 2rem;
-                color: $tirtiary-color;
-                text-transform: uppercase;
-            }
-        }
-
         .image-container {
-            width: 20%;
+            min-width: 180px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex: 1;
 
             .image {
+                background: $background;
                 height: 180px;
                 width: 180px;
                 border: 2px solid $background;
                 overflow: hidden;
                 border-radius: 50%;
                 object-position: center;
-                object-fit: contain;
 
                 img {
+                    object-fit: contain;
                     width: 100%;
-                    height: auto;
+                    height: 100%;
                     pointer-events: none;
                 }
             }
         }
 
-        .btn {
-            width: 40%;
+        .name {
+            flex: 4;
+            display: flex;
+            // align-items: flex-start;
+            flex-direction: column;
+            // padding: 2rem 0.2rem;
+            justify-content: space-between;
+            height: 130px;
+            margin: auto;
+
+            h1 {
+                font-size: 2.5rem;
+                color: $tirtiary-color;
+                text-transform: capitalize;
+                letter-spacing: 1px;
+            }
 
             .file-input {
                 .myfile {
@@ -64,9 +62,9 @@
                     display: block;
                     position: relative;
                     width: 200px;
-                    border-radius: 10px;
-                    background: $fourth-color;
-                    padding: 0.5rem 0.8rem;
+                    border-radius: 5px;
+                    background: $secondary-color;
+                    padding: 0.2rem 0.5rem;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -74,7 +72,30 @@
                     font-weight: bold;
                     cursor: pointer;
                     transition: transform 0.2s ease-out;
+                    letter-spacing: 1px;
                 }
+            }
+
+        }
+
+
+
+        .btn {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            button {
+                padding: 0.5rem 1rem;
+                letter-spacing: 1px;
+                font-size: 1rem;
+                border-radius: 5px;
+                background: $secondary-color;
+                border: none;
+                outline: none;
+                color: $background;
+                cursor: pointer;
             }
         }
     }

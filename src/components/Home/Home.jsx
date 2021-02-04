@@ -67,20 +67,19 @@ const Home = (props) => {
                 {props.currentUser ?
                     (<>
                         <div className="header">
-                            <div className="welcome">
-                                <h1>Welcome <span>{props.currentUser.name}</span></h1>
-                            </div>
                             <div className="image-container">
                                 <div className="image">
                                     <img src={props.currentUser.profilePic} alt="PP" />
                                 </div>
                             </div>
-                            <div className="btn">
+                            <div className="name">
+                                <h1>{props.currentUser.name}</h1>
                                 <div className="file-input">
                                     <input type="file" id="myfile" accept="image/*" class="myfile" onChange={handleUpload} />
                                     <label for="myfile">Change profile Picture</label>
                                 </div>
-                                {/* <button onClick={props.upload}>Upload</button> */}
+                            </div>
+                            <div className="btn">
                                 <button onClick={props.handleLogout}>Logout</button>
                             </div>
                         </div>
