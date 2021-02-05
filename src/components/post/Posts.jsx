@@ -27,25 +27,38 @@ const Posts = (props) => {
                 (
                     posts.map(item => (
                         <div
-                            className="post"
+                            className="post-container"
                             key={item.id}
                         >
-                            <p>{item.body}</p>
-                            <span className="date">{item.date}</span>
-                            <div className="btns">
-                                <button
-                                    className="delete"
-                                    onClick={() => {
-                                        props.deletePost(item.id)
-                                    }
-                                    }
-                                >Delete</button>
-                                <button
-                                    className="Edit"
-                                    onClick={() => {
-                                        props.editPost(item.id)
-                                    }}
-                                >Edit</button>
+                            <div className="post-image">
+                                <div className="image">
+                                    <img src={props.image} alt="Picture" />
+                                </div>
+                            </div>
+                            <div className="post">
+                                <div className="post-body">
+                                    <p>{item.body}</p>
+                                </div>
+                                <div className="post-footer">
+                                    <div className="post-time"> <p> {item.date}</p></div>
+                                    <div className="post-btns">
+
+                                        <button
+                                            className="Edit"
+                                            onClick={() => {
+                                                props.editPost(item.id)
+                                            }}
+                                        ><i class="far fa-edit"></i></button>
+                                        <button
+                                            className="delete"
+                                            onClick={() => {
+                                                props.deletePost(item.id)
+                                            }
+                                            }
+                                        ><i class="far fa-trash-alt"></i></button>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

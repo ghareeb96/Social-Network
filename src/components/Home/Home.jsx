@@ -76,47 +76,62 @@ const Home = (props) => {
                                 <h1>{props.currentUser.name}</h1>
                                 <div className="file-input">
                                     <input type="file" id="myfile" accept="image/*" class="myfile" onChange={handleUpload} />
-                                    <label for="myfile">Change profile Picture</label>
+                                    <label for="myfile"> <i className="fas fa-image"></i> Change Profile Picture</label>
                                 </div>
                             </div>
                             <div className="btn">
-                                <button onClick={props.handleLogout}>Logout</button>
+                                <button onClick={props.handleLogout} className="logout">Sign-Out <i class="fas fa-sign-out-alt"></i>
+
+                                </button>
                             </div>
                         </div>
-                        <div className="posts-container">
-                            <div className="add-post">
-                                <input
-                                    type="text"
-                                    name="newPost"
-                                    value={props.postText}
-                                    onChange={(e) => props.setPostText(e.target.value)} />
 
-                                <button
-                                    className="add"
-                                    onClick={() => { props.addPost() }}
-                                >
-                                    Post</button>
+                        <div className="main">
+                            <div className="timeline">
+                                <div className="post-input">
+
+                                    <div className="post-text">
+                                        <textarea
+                                            placeholder="Post something Useful"
+                                            cols="50"
+                                            rows="6"
+                                            name="newPost"
+                                            value={props.postText}
+                                            onChange={(e) => props.setPostText(e.target.value)} />
+
+                                    </div>
+
+                                    <button
+                                        className="add"
+                                        onClick={() => { props.addPost() }}
+                                    >
+                                        Post</button>
+
+                                </div>
+
+                                <div className="posts-container">
+
+                                    <Posts
+                                        posts={props.currentUser.posts}
+                                        deletePost={deletePost}
+                                        editPost={editPost}
+                                        image={props.currentUser.profilePic}
+                                    />
+
+                                </div>
                             </div>
 
-
-                            <Posts
-                                posts={props.currentUser.posts}
-                                deletePost={deletePost}
-                                editPost={editPost}
-                            />
-
-
-                        </div>
-                        <div className="users">
-                            {props.users ?
-                                Object.entries(props.users)
-                                    .filter((item) => item[1].email !== props.currentUser.email)
-                                    .map((item) =>
-                                        <a href="#" className="link" key={item[0]}>{item[1].name}</a>
-                                    )
-                                :
-                                ""
-                            }
+                            <div className="users">
+                                {props.users ?
+                                    Object.entries(props.users)
+                                        .filter((item) => item[1].email !== props.currentUser.email)
+                                        .map((item) =>
+                                            <a href="#" className="link" key={item[0]}>{item[1].name}</a>
+                                        )
+                                    :
+                                    ""
+                                }
+                            </div>
                         </div>
                     </>
                     )
