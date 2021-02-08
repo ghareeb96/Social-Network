@@ -1,0 +1,106 @@
+@import "../mainStyles.scss";
+
+.user {
+    background: $background;
+
+    .header {
+        background: $primary-color;
+        display: flex;
+        height: 200px;
+
+        .image-container {
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+
+            .image {
+                background: $background;
+                height: 180px;
+                width: 180px;
+                border: 2px solid $background;
+                overflow: hidden;
+                border-radius: 50%;
+                object-position: center;
+
+                img {
+                    object-fit: contain;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                }
+            }
+        }
+
+        .name {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 130px;
+            margin: auto;
+
+            h1 {
+                font-size: 2.5rem;
+                color: $secondary-color;
+                text-transform: capitalize;
+                letter-spacing: 1px;
+            }
+
+        }
+
+
+
+        .btn {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+
+            button {
+                margin: 30px;
+                padding: 0.5rem 1rem;
+                letter-spacing: 1px;
+                font-size: 1rem;
+                border-radius: 5px;
+                background: $secondary-color;
+                border: none;
+                outline: none;
+                color: $primary-color;
+                cursor: pointer;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                i {
+                    margin: auto 0 auto 10px;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+
+    .main {
+        display: flex;
+        flex-direction: row;
+        min-height: calc(100vh - 200px);
+
+        .timeline {
+            flex: 4;
+            padding: 30px 40px;
+
+            .posts-container {
+                width: 100%;
+                padding: 2rem 0;
+            }
+        }
+
+        .users {
+            flex: 1;
+            background: $fourth-color;
+            min-height: 100%;
+        }
+    }
+}

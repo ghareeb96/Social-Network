@@ -9,6 +9,7 @@ import {
 import firebaseDB from "./firebase";
 import RegLog from "./components/reg-log/reg-log";
 import Home from "./components/Home/Home";
+import Users from "./components/users/users";
 
 function App() {
   const database = firebaseDB.database().ref();
@@ -200,6 +201,7 @@ function App() {
               clearInput={clearInput}
             />
           </Route>
+          <Route exact path="/users/:id" component={Users} users={users} />
         </Switch>
       </Router>
     </div>
