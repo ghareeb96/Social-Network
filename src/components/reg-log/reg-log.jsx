@@ -2,13 +2,27 @@ import React, { useState, useEffect } from "react";
 import {
     Redirect
 } from "react-router-dom";
+import { gsap, Power2, TimelineLite, TweenLite } from "gsap";
 import "./reg-log.scss";
 
 
 const RegLog = (props) => {
 
+    // const tl = new TweenLite();
     const [toggler, setToggler] = useState("container");
 
+    useEffect(() => {
+
+        TweenLite.to(".container", 0.5, {
+            // y: 0,
+            ease: "easeInOut",
+            css: {
+                opacity: 1,
+                translateY: "0"
+            }
+        })
+        // tl.to(".container", { css: { opacity: "1", translateY: "0" } }, 0.4)
+    })
 
     if (props.loggedUser) {
         return (

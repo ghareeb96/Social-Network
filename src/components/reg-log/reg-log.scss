@@ -92,6 +92,8 @@
         box-shadow: 0 14px 25px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.25);
         position: relative;
         overflow: hidden;
+        transform: translateY(100px);
+        opacity: 0;
 
         .form-container form {
             display: flex;

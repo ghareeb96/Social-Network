@@ -123,15 +123,19 @@
             padding: 30px 40px;
 
             .post-input {
-                border: 2px solid $primary-color;
+                border: 3px solid $primary-color;
                 width: 60%;
                 border-radius: 10px 0 10px 0;
-                padding: 5px 5px 0 0;
+                // padding: 5px 5px 0 0;
                 position: relative;
+                outline: none;
 
                 .post-text {
                     width: 100%;
-                    height: 180px;
+                    height: 200px;
+                    // padding: 0.4rem 0.7rem;
+                    // background: rgb(204, 203, 203);
+                    border-radius: 10px 0 10px 0;
 
                     textarea {
                         resize: none;
@@ -140,18 +144,20 @@
                         font-size: 1.5rem;
                         padding: 0.4rem 0.7rem;
                         width: 100%;
+                        border-radius: 10px 0 10px 0;
+
                     }
                 }
 
                 button {
                     background: $primary-color;
-                    border: none;
+                    border: 2px solid $primary-color;
                     outline: none;
-                    border-radius: 10px 0 5px 0;
+                    border-radius: 10px 0 0 0;
                     position: absolute;
                     right: 0;
                     bottom: 0;
-                    font-size: 1rem;
+                    font-size: 1.5rem;
                     padding: 0.5rem 1rem;
                     color: white;
                     letter-spacing: 2px;
