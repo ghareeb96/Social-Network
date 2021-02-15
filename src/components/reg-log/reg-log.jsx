@@ -13,7 +13,7 @@ const RegLog = (props) => {
 
     useEffect(() => {
 
-        TweenLite.to(".container", 0.5, {
+        TweenLite.to(".container", 1, {
             // y: 0,
             ease: "easeInOut",
             css: {
@@ -126,5 +126,3 @@ const RegLog = (props) => {
 }
 
 export default RegLog;
-
-

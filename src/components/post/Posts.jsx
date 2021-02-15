@@ -47,7 +47,7 @@ const Posts = (props) => {
                 }
             )
             setFirstRender(false)
-        } else {
+        } else if (posts.length !== 0 && !firstRender) {
             TweenLite.fromTo(".post-container:first-child",
                 {
                     css: {
