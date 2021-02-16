@@ -4,6 +4,7 @@ import {
     Link
 } from "react-router-dom";
 import Posts from '../post/Posts'
+import bg from "./bg.jpg"
 import "./Home.scss"
 
 const Home = (props) => {
@@ -71,6 +72,7 @@ const Home = (props) => {
     if (props.loggedUser) {
         return (
             <div className="home">
+                <img src={bg} alt="bg" className="bg" />
                 {props.currentUser ?
                     (<>
                         <div className="header">

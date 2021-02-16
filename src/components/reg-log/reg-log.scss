@@ -9,7 +9,7 @@
         Times,
         'Times New Roman',
         serif;
-    background: url(Bg/9.jpg);
+    background: url(bg.jpg);
     background-position: center;
     background-size: cover;
     display: flex;
@@ -49,7 +49,7 @@
 
         &:focus {
             outline: none;
-            border-bottom: 1px solid $secondary-color;
+            border-bottom: 1px solid $primary-color;
         }
     }
 

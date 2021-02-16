@@ -48,7 +48,8 @@ const Posts = (props) => {
             )
             setFirstRender(false)
         } else if (posts.length !== 0 && !firstRender) {
-            TweenLite.fromTo(".post-container:first-child",
+            let selector = document.querySelectorAll(".post-container")[0];
+            TweenLite.fromTo(selector,
                 {
                     css: {
                         opacity: 0,
@@ -66,35 +67,19 @@ const Posts = (props) => {
                 }
             )
         }
-        // else{
-        //     TweenLite.to(".post-container", {
-        //         duration: 1,
-        //         yoyo: true,
-        //         css: {
-        //             opacity: 1,
-        //             x: 0
-        //         },
-        //         stagger: 0.2
-        //     }
-        //     )
-        // }
-
-        // else {
-        //     TweenLite.to(".post-container:first-child", {
-        //         duration: 1,
-        //         yoyo: true,
-        //         css: {
-        //             opacity: 1,
-        //             x: 0
-        //         },
-        //         stagger: 0.2
-        //     }
-        //     )
-
-        // }
-
 
     }, [posts])
+
+    useEffect(() => {
+
+        if (modal) {
+
+            TweenLite.from(".modal", 0.3, {
+                scale: 0
+            })
+        }
+
+    }, [modal])
 
 
     return (
@@ -104,24 +89,29 @@ const Posts = (props) => {
                 (
                     posts.map(item => (
                         <>
-                            {modal ?
-                                (
-                                    <div className="modal-container">
-                                        <div className="modal">
-                                            <textarea onChange={(e) => setNewText(e.target.value)} cols="30" rows="10" defaultValue={item.body}></textarea>
-                                            <button onClick={() => setModal(false)}>Close</button>
-                                            <button onClick={() => {
-                                                props.editPost(item.id, newText)
-                                                setModal(false)
-                                                setNewText("")
-                                            }}>Done</button>
-                                        </div>
+                            <div className={modal ? "modal-container open" : "modal-container"}
 
+                                onClick={(e) => {
+                                    if (e.target.classList.contains("modal-container")) {
+                                        setModal(false)
+                                    }
+                                }}>
+
+                                <div className="modal">
+                                    <div className="text">
+                                        <textarea onChange={(e) => setNewText(e.target.value)} cols="30" rows="10" defaultValue={item.body}></textarea>
                                     </div>
-                                )
-                                :
-                                ""
-                            }
+                                    <div className="btns">
+                                        <button onClick={() => {
+                                            props.editPost(item.id, newText)
+                                            setModal(false)
+                                            setNewText("")
+                                        }}>Done</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div
                                 className="post-container"
                                 key={item.id}
