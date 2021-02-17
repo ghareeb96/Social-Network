@@ -170,7 +170,7 @@ const Home = (props) => {
         )
     } else {
         return (
-            <Redirect to="/"></Redirect>
+            <Redirect to="/Social-Network/"></Redirect>
         )
     }
 }

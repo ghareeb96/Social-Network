@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "./posts.scss"
-import { gsap, Power2, TimelineLite, TweenLite } from "gsap";
+import { gsap, TweenLite } from "gsap";
+
 
 const Posts = (props) => {
     const [posts, setPosts] = useState([])

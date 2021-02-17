@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import {
     Redirect
 } from "react-router-dom";
-import { gsap, Power2, TimelineLite, TweenLite } from "gsap";
+import { gsap, TweenLite } from "gsap";
 import "./reg-log.scss";
 
+gsap.registerPlugin(TweenLite)
 
 const RegLog = (props) => {
 
@@ -13,7 +14,7 @@ const RegLog = (props) => {
 
     useEffect(() => {
 
-        TweenLite.to(".container", 1, {
+        gsap.to(".container", 0.7, {
             // y: 0,
             ease: "easeInOut",
             css: {

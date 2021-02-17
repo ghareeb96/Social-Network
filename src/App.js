@@ -115,7 +115,14 @@ function App() {
         }
       })
 
+
+
+
   }
+  window.addEventListener('beforeunload', (e) => {
+    e.preventDefault();
+    handleLogout();
+  });
 
   useEffect(() => {
     database.child("users").on("value", (snapshot) => {
@@ -184,7 +191,7 @@ function App() {
               setImage={setImage}
             />
           </Route>
-          <Route exact path="/">
+          <Route exact path="/Social-Network/">
             <RegLog
               name={name}
               setName={setName}
