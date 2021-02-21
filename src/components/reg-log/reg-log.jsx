@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import { gsap, TweenLite } from "gsap";
 import "./reg-log.scss";
+import logo from "./Logo.png";
 
 gsap.registerPlugin(TweenLite)
 
@@ -32,89 +33,184 @@ const RegLog = (props) => {
     } else {
         return (
             <div className="reg-log">
+                {/* <div className="sign-up">
+                    <div className="form-section">
+                        <div className="form-header">
+                            <img src={logo} alt="Logo" className="logo" />
+                            <h3 className="fakeboss">Fakeboss</h3>
+                        </div>
+
+                        <div className="form-inputs">
+                            <div className="form-input">
+                                <label htmlFor="name-input">Full Name</label>
+                                <input
+                                    onChange={(e) => props.setName(e.target.value)}
+                                    type="text"
+                                    id="name-input"
+                                    value={props.name}
+                                    required
+                                />
+                            </div>
+                            <div className="form-input">
+                                <label htmlFor="email-input">E-Mail</label>
+                                <input
+                                    onChange={(e) => props.setEmail(e.target.value)}
+                                    type="email"
+                                    id="email-input"
+                                    value={props.email}
+                                    required
+                                />
+                                <p className="error">{props.emailError}</p>
+                            </div>
+                            <div className="form-input">
+                                <label htmlFor="password-input">Password</label>
+                                <input
+                                    onChange={(e) => props.setPassword(e.target.value)}
+                                    type="password"
+                                    id="password-input"
+                                    required
+                                    value={props.password}
+                                />
+                                <p className="error">{props.passwordError}</p>
+                            </div>
+                        </div>
+
+                        <div className="form-btn">
+                            <button className="submit">Sign Up</button>
+                            <div className="instead">
+                                <p>Already have an Account ?</p>
+                                <a href="#">Sign in</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="hero-section">
+
+                        <div className="illustration"></div>
+                        <div className="slogan"></div>
+
+                    </div>
+                </div>
+                <div className="login"></div> */}
+
+
                 <div className={toggler}>
                     <div className="form-container sign-up-container">
-                        <form>
-                            <h1>Create New Account</h1>
-                            <span>Please, Use a valid E-mail for registration</span>
-                            <input
-                                onChange={(e) => props.setName(e.target.value)}
-                                type="text"
-                                placeholder="Name"
-                                value={props.name}
-                                required
-                            />
-                            <input
-                                onChange={(e) => props.setEmail(e.target.value)}
-                                type="email"
-                                placeholder="Email"
-                                value={props.email}
-                                required
-                            />
-                            <p className="error">{props.emailError}</p>
-                            <input
-                                onChange={(e) => props.setPassword(e.target.value)}
-                                type="password"
-                                placeholder="Password"
-                                required
-                                value={props.password}
-                            />
-                            <p className="error">{props.passwordError}</p>
-                            <button onClick={(e) => {
-                                e.preventDefault();
-                                props.handleSignUp()
-                            }}>Sign Up</button>
-                        </form>
-                    </div>
+                        <div className="form-header">
+                            <h2>Create New Account</h2>
+                        </div>
 
-                    <div className="form-container sign-in-container">
-                        <form>
-                            <h1>Sign In</h1>
-                            <span>Use your Email</span>
-                            <input
-                                onChange={(e) => props.setEmail(e.target.value)}
-                                type="email"
-                                placeholder="Email"
-                                value={props.email}
-                                required autoFocus
-                            />
-                            <p className="error">{props.emailError}</p>
-                            <input
-                                onChange={(e) => props.setPassword(e.target.value)}
-                                type="password"
-                                placeholder="Password"
-                                required
-                                value={props.password}
-                            />
-                            <p className="error">{props.passwordError}</p>
-                            <button onClick={(e) => {
-                                e.preventDefault()
-                                props.handleLogin()
-                            }}>Sign In</button>
-                        </form>
+                        <div className="form-section">
+                            <div className="form-inputs">
+                                <div className="form-input">
+                                    <label htmlFor="name-input">Full Name</label>
+                                    <input
+                                        onChange={(e) => props.setName(e.target.value)}
+                                        type="text"
+                                        id="name-input"
+                                        value={props.name}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-input">
+                                    <label htmlFor="email-input">E-Mail</label>
+                                    <input
+                                        onChange={(e) => props.setEmail(e.target.value)}
+                                        type="email"
+                                        id="email-input"
+                                        value={props.email}
+                                        required
+                                    />
+                                    <p className="error">{props.emailError}</p>
+                                </div>
+                                <div className="form-input">
+                                    <label htmlFor="password-input">Password</label>
+                                    <input
+                                        onChange={(e) => props.setPassword(e.target.value)}
+                                        type="password"
+                                        id="password-input"
+                                        required
+                                        value={props.password}
+                                    />
+                                    <p className="error">{props.passwordError}</p>
+                                </div>
+                            </div>
 
-                    </div>
-                    <div className="overlay-container">
-                        <div className="overlay">
-                            <div className="overlay-panel overlay-left">
-                                <h1>Already Have an Account ?</h1>
-                                <p>Sign in now</p>
-                                <button
-                                    onClick={() => {
+                            <div className="form-btn">
+                                <button className="submit" onClick={(e) => {
+                                    e.preventDefault();
+                                    props.handleSignUp();
+                                }}>Sign Up</button>
+                                <div className="instead">
+                                    <p>Already have an Account ?</p>
+                                    <a onClick={() => {
                                         props.clearErrors()
                                         props.clearInput()
                                         setToggler("container")
-                                    }}
-                                    className="ghost" id="signIn">Sign In</button>
+                                    }}>Sign in</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="form-container sign-in-container">
+                        <div className="form-header">
+                            <h2>Sign In</h2>
+                        </div>
+                        <div className="form-section">
+
+                            <div className="form-inputs">
+                                <div className="form-input">
+                                    <label htmlFor="email-input">E-Mail</label>
+                                    <input
+                                        onChange={(e) => props.setEmail(e.target.value)}
+                                        type="email"
+                                        id="email-input"
+                                        value={props.email}
+                                        required
+                                    />
+                                    <p className="error">{props.emailError}</p>
+                                </div>
+                                <div className="form-input">
+                                    <label htmlFor="password-input">Password</label>
+                                    <input
+                                        onChange={(e) => props.setPassword(e.target.value)}
+                                        type="password"
+                                        id="password-input"
+                                        required
+                                        value={props.password}
+                                    />
+                                    <p className="error">{props.passwordError}</p>
+                                </div>
+                            </div>
+                            <div className="form-btn">
+                                <button className="submit" onClick={(e) => {
+                                    e.preventDefault();
+                                    props.handleLogin();
+                                }}>Sign In</button>
+                                <div className="instead">
+                                    <p>Don't have Account ?</p>
+                                    <a onClick={() => {
+                                        props.clearErrors()
+                                        props.clearInput()
+                                        setToggler("container right-panel-active")
+                                    }}>Sign Up</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div className="overlay-container">
+                        <div className="overlay">
+                            <div className="overlay-panel overlay-left">
+                                <img src={logo} alt="Logo" />
+                                <h3>Fakeboss</h3>
                             </div>
                             <div className="overlay-panel overlay-right">
-                                <h1>Hello Friend !</h1>
-                                <p>Sign up and Start the Journey with Us</p>
-                                <button onClick={() => {
-                                    props.clearErrors()
-                                    props.clearInput()
-                                    setToggler("container right-panel-active")
-                                }} className="ghost" id="signUp">Sign Up</button>
+                                <img src={logo} alt="Logo" />
+                                <h3>Fakeboss</h3>
                             </div>
                         </div>
                     </div>
