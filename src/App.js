@@ -131,6 +131,7 @@ function App() {
       }
     })
     authListener();
+
   }, [])
 
   useEffect(() => {
@@ -158,14 +159,16 @@ function App() {
   }, [image])
 
   useEffect(() => {
-    if (userKey) {
+    if (loggedUser) {
       database.child(`users/${userKey}`).on("value", (snapshot) => {
-
         setCurrentUser(snapshot.val())
-        console.log(snapshot.val())
       })
+    } else {
+      setCurrentUser("")
+      setUserKey("")
     }
-  }, [userKey])
+
+  }, [loggedUser])
 
 
   return (

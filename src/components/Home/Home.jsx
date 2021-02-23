@@ -72,7 +72,6 @@ const Home = (props) => {
     if (props.loggedUser) {
         return (
             <div className="home">
-                <img src={bg} alt="bg" className="bg" />
                 {props.currentUser ?
                     (<>
                         <div className="header">
@@ -83,20 +82,101 @@ const Home = (props) => {
                             </div>
                             <div className="name">
                                 <h1>{props.currentUser.name}</h1>
-                                <div className="file-input">
+                                {/* <div className="file-input">
                                     <input type="file" id="myfile" accept="image/*" className="myfile" onChange={handleUpload} />
                                     <label htmlFor="myfile"> <i className="fas fa-image"></i> Change Profile Picture</label>
-                                </div>
+                                </div> */}
                             </div>
-                            <div className="btn">
+                            {/* <div className="btn">
                                 <button onClick={props.handleLogout} className="logout">Sign-Out <i className="fas fa-sign-out-alt"></i>
 
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="main">
-                            <div className="timeline">
+
+                            <div className="tabs">
+                                <ul className="tab-links">
+                                    <li className="link active-link">
+                                        <Link to={"/Home"}>
+                                            <i class="fas fa-home"></i> Home
+                                                    </Link>
+                                    </li>
+
+                                    <li className="link">
+                                        <Link to={"/Profile"}>
+                                            <i class="fas fa-user"></i> Profile
+                                                    </Link>
+                                    </li>
+
+                                    <li className="link">
+                                        <Link to={"/Notifications"}>
+                                            <i class="fas fa-bell"></i> Notifications
+                                                    </Link>
+                                    </li>
+
+                                    <li className="link">
+                                        <Link to={"/Messages"}>
+                                            <i class="fas fa-envelope"></i> Messages
+                                                    </Link>
+                                    </li>
+
+                                    <li className="link">
+                                        <Link to={"/Settings"}>
+                                            <i class="fas fa-cogs"></i> Settings
+                                                    </Link>
+                                    </li>
+
+                                    <li className="link">
+                                        <Link onClick={() => {
+                                            props.handleLogout()
+                                        }}>
+                                            <i class="fas fa-sign-out-alt"></i> Sign Out
+                                                    </Link>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div className="timeline"></div>
+
+                            <div className="users">
+
+                                <div className="headline">
+                                    <h3>People you may know</h3>
+                                </div>
+                                <div className="users-container">
+
+                                    {props.users ?
+                                        Object.entries(props.users)
+                                            .filter((item) => item[1].email !== props.currentUser.email)
+                                            .map((item) =>
+                                                <div className="user">
+                                                    <div className="image">
+                                                        <img src={item[1].profilePic} alt="PP" />
+                                                    </div>
+                                                    <div className="userName">
+                                                        <Link to={{
+                                                            pathname: `/users/${item[0]}`,
+                                                            state: {
+                                                                users: props.users,
+                                                                mainUser: props.currentUser
+                                                            }
+                                                        }}
+                                                            key={item[0]}>
+                                                            {item[1].name}
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            )
+                                        :
+                                        ""
+                                    }
+                                </div>
+                            </div>
+
+
+                            {/* <div className="timeline">
                                 <div className="post-input">
 
                                     <div className="post-text">
@@ -129,36 +209,9 @@ const Home = (props) => {
                                     />
 
                                 </div>
-                            </div>
+                            </div> */}
 
-                            <div className="users">
-                                <h3>People you may know</h3>
-                                {props.users ?
-                                    Object.entries(props.users)
-                                        .filter((item) => item[1].email !== props.currentUser.email)
-                                        .map((item) =>
-                                            <div className="user">
-                                                <div className="image">
-                                                    <img src={item[1].profilePic} alt="PP" />
-                                                </div>
-                                                <div className="userName">
-                                                    <Link to={{
-                                                        pathname: `/users/${item[0]}`,
-                                                        state: {
-                                                            users: props.users,
-                                                            mainUser: props.currentUser
-                                                        }
-                                                    }}
-                                                        key={item[0]}>
-                                                        {item[1].name}
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        )
-                                    :
-                                    ""
-                                }
-                            </div>
+
                         </div>
                     </>
                     )
