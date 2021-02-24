@@ -161,22 +161,22 @@ const RegLog = (props) => {
 
                             <div className="form-inputs">
                                 <div className="form-input">
-                                    <label htmlFor="email-input">E-Mail</label>
+                                    <label htmlFor="email-sign-in">E-Mail</label>
                                     <input
                                         onChange={(e) => props.setEmail(e.target.value)}
                                         type="email"
-                                        id="email-input"
+                                        id="email-sign-in"
                                         value={props.email}
                                         required
                                     />
                                     <p className="error">{props.emailError}</p>
                                 </div>
                                 <div className="form-input">
-                                    <label htmlFor="password-input">Password</label>
+                                    <label htmlFor="password-sign-in">Password</label>
                                     <input
                                         onChange={(e) => props.setPassword(e.target.value)}
                                         type="password"
-                                        id="password-input"
+                                        id="password-sign-in"
                                         required
                                         value={props.password}
                                     />

@@ -4,7 +4,6 @@ import {
     Link
 } from "react-router-dom";
 import Posts from '../post/Posts'
-import bg from "./bg.jpg"
 import "./Home.scss"
 
 const Home = (props) => {
@@ -42,8 +41,24 @@ const Home = (props) => {
             props.setImage(e.target.files[0])
         }
     }
+    useEffect(() => {
+        if (document.querySelector(".users") && document.querySelector(".main")) {
+            window.addEventListener("scroll", () => {
+                let sidebarHeight = document.querySelector(".users-container").offsetHeight + document.querySelector(".users-container").offsetTop + document.querySelector(".main").offsetTop;
+                // console.log(sidebarHeight)
+                // console.log(window.scrollY + window.outerHeight)
+                // console.log(document.querySelector(".users-container").offsetTop)
+                // console.log(document.querySelector(".users-container").offsetHeight)
+                // console.log(document.querySelector(".main").offsetTop)
 
-
+                if (sidebarHeight <= window.scrollY + window.outerHeight) {
+                    document.querySelector(".users").className = "users fixed"
+                } else {
+                    document.querySelector(".users").className = "users"
+                }
+            })
+        }
+    }, [props.users])
     useEffect(() => {
         if (props.isFirstLogin) {
             saveUser();
@@ -100,40 +115,40 @@ const Home = (props) => {
                                 <ul className="tab-links">
                                     <li className="link active-link">
                                         <Link to={"/Home"}>
-                                            <i class="fas fa-home"></i> Home
+                                            <i className="fas fa-home"></i> Home
                                                     </Link>
                                     </li>
 
                                     <li className="link">
                                         <Link to={"/Profile"}>
-                                            <i class="fas fa-user"></i> Profile
+                                            <i className="fas fa-user"></i> Profile
                                                     </Link>
                                     </li>
 
                                     <li className="link">
                                         <Link to={"/Notifications"}>
-                                            <i class="fas fa-bell"></i> Notifications
+                                            <i className="fas fa-bell"></i> Notifications
                                                     </Link>
                                     </li>
 
                                     <li className="link">
                                         <Link to={"/Messages"}>
-                                            <i class="fas fa-envelope"></i> Messages
+                                            <i className="fas fa-envelope"></i> Messages
                                                     </Link>
                                     </li>
 
                                     <li className="link">
                                         <Link to={"/Settings"}>
-                                            <i class="fas fa-cogs"></i> Settings
+                                            <i className="fas fa-cogs"></i> Settings
                                                     </Link>
                                     </li>
 
                                     <li className="link">
-                                        <Link onClick={() => {
+                                        <button onClick={() => {
                                             props.handleLogout()
                                         }}>
-                                            <i class="fas fa-sign-out-alt"></i> Sign Out
-                                                    </Link>
+                                            <i className="fas fa-sign-out-alt"></i> Sign Out
+                                                    </button>
                                     </li>
                                 </ul>
                             </div>

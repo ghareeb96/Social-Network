@@ -11,11 +11,11 @@ $secondary-color: #00182D;
     flex-direction: column;
 
     .header {
-        background: $form-background;
+        background: darken($form-background, 5);
         display: flex;
         height: 200px;
         width: 100%;
-        border-bottom: 2px solid $primary-color;
+        border-bottom: 1px solid #535353;
 
         .image-container {
             min-width: 180px;
@@ -62,9 +62,9 @@ $secondary-color: #00182D;
         width: 100%;
         display: flex;
         flex-direction: row;
-        height: 100%;
+        min-height: 200vh;
         position: relative;
-        // min-height: calc(100vh - 200px);
+        transition: all 0.2s ease-in-out;
 
         .tabs {
             width: 25%;
@@ -75,7 +75,7 @@ $secondary-color: #00182D;
             position: sticky;
             top: 0;
             background: $form-background;
-            border-right: 1px solid $primary-color;
+            border-right: 1px solid #535353;
 
             .tab-links {
                 width: 100%;
@@ -85,10 +85,15 @@ $secondary-color: #00182D;
                     padding: 20px 0 20px 50px;
                     margin: 20px 0 20px 0;
 
-                    a {
+                    a,
+                    button {
+                        cursor: pointer;
                         color: white;
                         text-decoration: none;
                         font-size: 1.5rem;
+                        background: none;
+                        outline: none;
+                        border: none;
                     }
                 }
 
