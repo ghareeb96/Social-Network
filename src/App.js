@@ -159,15 +159,19 @@ function App() {
   }, [image])
 
   useEffect(() => {
-    if (loggedUser) {
+    if (users) {
       database.child(`users/${userKey}`).on("value", (snapshot) => {
         setCurrentUser(snapshot.val())
       })
-    } else {
+    }
+
+  }, [users])
+
+  useEffect(() => {
+    if (!loggedUser) {
       setCurrentUser("")
       setUserKey("")
     }
-
   }, [loggedUser])
 
 

@@ -7,89 +7,146 @@
     width: 100%;
 
     .post-container {
-        display: flex;
-        flex-direction: row;
-        margin: 50px 0;
-        min-height: 200px;
-        width: 80%;
-        // transform: translateX(100px);
-        // opacity: 0;
 
-        .post-image {
-            display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex: 1;
-
-
-            .image {
-                background: $background;
-                height: 100px;
-                width: 100px;
-                border: 2px solid $primary-color;
-                overflow: hidden;
-                border-radius: 50%;
-                object-position: center;
-
-                img {
-                    object-fit: contain;
-                    width: 100%;
-                    height: 100%;
-                    pointer-events: none;
-                }
-            }
-        }
+        margin: 20px auto 0 auto;
+        min-height: 300px;
+        width: 98%;
+        border: 1px solid $form-background;
+        background: darken($form-background, 6);
 
         .post {
-            flex: 5;
-            border: 3px solid $primary-color;
-            padding: 1rem 1rem 5px 1rem;
             display: flex;
             flex-direction: column;
-            background: rgb(211, 211, 211);
-            border-radius: 10px;
+            width: 95%;
+            margin: 10px auto;
 
-            .post-body {
+            .post-header {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                min-height: 100px;
+
+                .post-image {
+                    width: 80px;
+                    height: 80px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .image {
+                        background: white;
+                        height: 80px;
+                        width: 80px;
+                        border: 1px solid white;
+                        overflow: hidden;
+                        border-radius: 50%;
+
+                        img {
+                            object-position: center;
+                            object-fit: contain;
+                            width: 100%;
+                            height: 100%;
+                            pointer-events: none;
+                        }
+                    }
+
+                }
+
+                .name {
+                    height: 60%;
+                    margin: auto 0 20px 15px;
+
+                    h4 {
+                        color: white;
+                        font-size: 18px;
+                        letter-spacing: 1px;
+                    }
+                }
+
+                .op-btns {
+                    margin: 0 0 auto auto;
+
+                    button {
+                        background: none;
+                        outline: none;
+                        border: none;
+                        cursor: pointer;
+                        color: white;
+                        padding: 5px;
+                        margin: 10px;
+
+                        i {
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+
+            }
+
+            .post-content {
+                width: 100%;
+                min-height: 170px;
+                padding: 10px;
+                border-top: 1px solid $form-background;
+                border-bottom: 1px solid $form-background;
+
                 p {
                     font-size: 1.5rem;
+                    color: white;
                 }
             }
 
             .post-footer {
-                margin: auto auto 0 0;
                 display: flex;
                 flex-direction: row;
-                width: 100%;
                 align-items: center;
+                margin-top: 10px;
                 justify-content: space-between;
-                border-top: 1px solid $primary-color;
-                padding: 6px 0 0 0;
-
 
                 .post-time {
+                    height: 100%;
+                    margin: auto 0;
+
                     p {
-                        font-weight: bolder;
-                        font-size: 14px;
+                        color: white;
+                        height: 100%;
                     }
                 }
 
-                .post-btns {
+                .react-btns {
+                    display: flex;
+                    flex-direction: row;
 
-                    button {
-                        background: none;
-                        border: none;
-                        outline: none;
-                        cursor: pointer;
-                        margin: auto 10px;
+                    .comment,
+                    .likes {
+                        margin: 0 15px;
 
-                        i {
-                            font-size: 1.6rem;
+                        button {
+                            background: none;
+                            border: none;
+                            outline: none;
+                            cursor: pointer;
 
+                            i {
+                                font-size: 1.5rem;
+                                color: white;
+                            }
+                        }
+
+                        span {
+                            margin: 0 5px;
+                            color: $primary-color;
+                            font-size: 1.2rem;
                         }
                     }
+
                 }
             }
         }
+
+
+
+
     }
 
     .modal-container {

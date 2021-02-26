@@ -45,13 +45,8 @@ const Home = (props) => {
         if (document.querySelector(".users") && document.querySelector(".main")) {
             window.addEventListener("scroll", () => {
                 let sidebarHeight = document.querySelector(".users-container").offsetHeight + document.querySelector(".users-container").offsetTop + document.querySelector(".main").offsetTop;
-                // console.log(sidebarHeight)
-                // console.log(window.scrollY + window.outerHeight)
-                // console.log(document.querySelector(".users-container").offsetTop)
-                // console.log(document.querySelector(".users-container").offsetHeight)
-                // console.log(document.querySelector(".main").offsetTop)
 
-                if (sidebarHeight <= window.scrollY + window.outerHeight) {
+                if (sidebarHeight <= window.scrollY + window.innerHeight) {
                     document.querySelector(".users").className = "users fixed"
                 } else {
                     document.querySelector(".users").className = "users"
@@ -153,40 +148,74 @@ const Home = (props) => {
                                 </ul>
                             </div>
 
-                            <div className="timeline"></div>
-
-                            <div className="users">
-
-                                <div className="headline">
-                                    <h3>People you may know</h3>
+                            <div className="timeline">
+                                <div className="addPost-section">
+                                    <div className="addPost">
+                                        <div className="post-text">
+                                            <textarea
+                                                placeholder="Post something Useful"
+                                                cols="50"
+                                                rows="6"
+                                                name="newPost"
+                                                value={props.postText}
+                                                onChange={(e) => props.setPostText(e.target.value)} />
+                                        </div>
+                                        <div className="add-post-footer">
+                                            <button
+                                                className="add"
+                                                onClick={() => { props.addPost() }}
+                                            >
+                                                Post</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="users-container">
 
-                                    {props.users ?
-                                        Object.entries(props.users)
-                                            .filter((item) => item[1].email !== props.currentUser.email)
-                                            .map((item) =>
-                                                <div className="user">
-                                                    <div className="image">
-                                                        <img src={item[1].profilePic} alt="PP" />
+                                <div className="posts-section">
+                                    <Posts
+                                        currentUser={props.currentUser}
+                                        deletePost={deletePost}
+                                        editPost={editPost}
+                                        image={props.currentUser.profilePic}
+                                        viewIcons={true}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="users-section">
+
+                                <div className="users">
+
+                                    <div className="headline">
+                                        <h3>People you may know</h3>
+                                    </div>
+                                    <div className="users-container">
+
+                                        {props.users ?
+                                            Object.entries(props.users)
+                                                .filter((item) => item[1].email !== props.currentUser.email)
+                                                .map((item) =>
+                                                    <div className="user">
+                                                        <div className="image">
+                                                            <img src={item[1].profilePic} alt="PP" />
+                                                        </div>
+                                                        <div className="userName">
+                                                            <Link to={{
+                                                                pathname: `/users/${item[0]}`,
+                                                                state: {
+                                                                    users: props.users,
+                                                                    mainUser: props.currentUser
+                                                                }
+                                                            }}
+                                                                key={item[0]}>
+                                                                {item[1].name}
+                                                            </Link>
+                                                        </div>
                                                     </div>
-                                                    <div className="userName">
-                                                        <Link to={{
-                                                            pathname: `/users/${item[0]}`,
-                                                            state: {
-                                                                users: props.users,
-                                                                mainUser: props.currentUser
-                                                            }
-                                                        }}
-                                                            key={item[0]}>
-                                                            {item[1].name}
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            )
-                                        :
-                                        ""
-                                    }
+                                                )
+                                            :
+                                            ""
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
