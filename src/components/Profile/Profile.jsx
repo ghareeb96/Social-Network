@@ -4,9 +4,9 @@ import {
     Link
 } from "react-router-dom";
 import Posts from '../post/Posts'
-import "./Home.scss"
+import "./Profile.scss"
 
-const Home = (props) => {
+const Profile = (props) => {
     const [gotUser, setGotUser] = useState(false);
 
     const editPost = (postId, newPost) => {
@@ -32,8 +32,11 @@ const Home = (props) => {
         }
     }
 
-    const saveUser = () => {
-        props.database.child("users").push(props.initUser);
+    const handleUpload = (e) => {
+        if (e.target.files[0]) {
+            props.setImage(e.target.files[0])
+            setGotUser(false)
+        }
     }
 
     useEffect(() => {
@@ -49,13 +52,10 @@ const Home = (props) => {
             })
         }
     }, [props.users])
-    useEffect(() => {
-        if (props.isFirstLogin) {
-            saveUser();
-            props.setFirstLogin(false);
-        }
 
-        if (!gotUser && !props.isFirstLogin) {
+    useEffect(() => {
+
+        if (!gotUser) {
             const curUser = () => {
                 if (props.users) {
                     for (const [key, value] of Object.entries(props.users)) {
@@ -63,6 +63,7 @@ const Home = (props) => {
                             props.setCurrentUser(value)
                             props.setUserKey(key)
                             setGotUser(true);
+                            console.log("got it")
                         }
                     }
                 }
@@ -71,12 +72,12 @@ const Home = (props) => {
         }
 
 
-    }, [props])
+    }, [props.currentUser])
 
 
     if (props.loggedUser) {
         return (
-            <div className="home">
+            <div className="profile">
                 {props.currentUser ?
                     (<>
                         <div className="header">
@@ -85,42 +86,51 @@ const Home = (props) => {
                                     <img src={props.currentUser.profilePic} alt="PP" />
                                 </div>
                             </div>
-                            <div className="name">
-                                <h1>{props.currentUser.name}</h1>
-                                {/* <div className="file-input">
-                                    <input type="file" id="myfile" accept="image/*" className="myfile" onChange={handleUpload} />
-                                    <label htmlFor="myfile"> <i className="fas fa-image"></i> Change Profile Picture</label>
-                                </div> */}
+                            <div className="header-middle">
+                                <div className="profile-pic-btn">
+                                    <div className="file-input">
+                                        <input type="file" id="myfile" accept="image/*" className="myfile" onChange={handleUpload} />
+                                        <label htmlFor="myfile"> <i className="fas fa-image"></i> Change Profile Picture</label>
+                                    </div>
+                                </div>
+                                <div className="name">
+                                    <h1>{props.currentUser.name}</h1>
+                                </div>
                             </div>
-                            {/* <div className="btn">
-                                <button onClick={props.handleLogout} className="logout">Sign-Out <i className="fas fa-sign-out-alt"></i>
 
-                                </button>
-                            </div> */}
+                            <div className="header-right">
+                                <div className="followings">
+                                    <h4>Followings</h4>
+                                    <span>10</span>
+                                </div>
+                                <div className="followers">
+                                    <h4>Followers</h4>
+                                    <span>10</span>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="main">
 
                             <div className="tabs">
                                 <ul className="tab-links">
-                                    <li className="link active-link">
+                                    <li className="link">
                                         <Link to={"/Home"}>
                                             <i className="fas fa-home"></i> Home
                                                     </Link>
                                     </li>
 
-                                    <li className="link">
+                                    <li className="link active-link">
                                         <Link to={"/Profile"}>
                                             <i className="fas fa-user"></i> Profile
                                                     </Link>
                                     </li>
 
                                     <li className="link disabled">
-                                        <Link to={"/Notifications"}>
+                                        <Link to={"/Notifications"} >
                                             <i className="fas fa-bell"></i> Notifications
                                                     </Link>
                                         <span>Soon</span>
-
                                     </li>
 
                                     <li className="link disabled">
@@ -272,5 +282,5 @@ const Home = (props) => {
         )
     }
 }
-export default Home;
+export default Profile;
 

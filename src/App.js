@@ -9,6 +9,7 @@ import {
 import firebaseDB from "./firebase";
 import RegLog from "./components/reg-log/reg-log";
 import Home from "./components/Home/Home";
+import Profile from "./components/Profile/Profile";
 import Users from "./components/users/users";
 
 function App() {
@@ -150,6 +151,7 @@ function App() {
               .then(url => {
                 database.child(`users/${userKey}/profilePic`).set(url)
               })
+              .then(() => setImage(null))
           }
 
         )
@@ -198,6 +200,26 @@ function App() {
               setImage={setImage}
             />
           </Route>
+
+
+          <Route exact path="/Profile">
+            <Profile
+              database={database}
+              handleLogout={handleLogout}
+              users={users}
+              loggedUser={loggedUser}
+              setUserKey={setUserKey}
+              userKey={userKey}
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              addPost={addPost}
+              postText={postText}
+              setPostText={setPostText}
+              setImage={setImage}
+            />
+          </Route>
+
+
           <Route exact path="/Social-Network/">
             <RegLog
               name={name}
@@ -215,6 +237,7 @@ function App() {
               clearInput={clearInput}
             />
           </Route>
+
           <Route exact path="/users/:id" component={Users} users={users} />
         </Switch>
       </Router>

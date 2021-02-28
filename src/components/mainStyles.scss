@@ -3,7 +3,9 @@ $form-background : #363636;
 $primary-color: #3F9FF2;
 $secondary-color: #00182D;
 
-.home {
+.home,
+.profile,
+.user-profile {
     background: $background;
     min-height: 100vh;
     width: 100%;
@@ -24,7 +26,7 @@ $secondary-color: #00182D;
 
 
             .image {
-                background: $background;
+                background: white;
                 height: 180px;
                 width: 180px;
                 border: 4px solid white;
@@ -41,9 +43,12 @@ $secondary-color: #00182D;
             }
         }
 
+
+
         .name {
 
-            height: 90%;
+            // height: 90%;
+            margin-bottom: 20px;
             display: flex;
             justify-content: start;
             align-items: flex-end;
@@ -62,7 +67,7 @@ $secondary-color: #00182D;
         width: 100%;
         display: flex;
         flex-direction: row;
-        // min-height: 200vh;
+        min-height: 100vh;
         transition: all 0.2s ease-in-out;
 
         .tabs {
@@ -94,6 +99,25 @@ $secondary-color: #00182D;
                         outline: none;
                         border: none;
                     }
+                }
+
+                .disabled {
+
+                    span {
+                        margin-left: 15px;
+                        color: white;
+                        background: rgb(221, 40, 40);
+                        padding: 0.2rem;
+                        border-radius: 2px;
+                    }
+
+                    pointer-events: none;
+
+                    a {
+                        color: #535353;
+                        text-decoration: line-through;
+                    }
+
                 }
 
                 .active-link {
