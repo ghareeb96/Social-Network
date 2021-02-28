@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/Social-Network/static/css/main.e892a32a.chunk.css",
-    "main.js": "/Social-Network/static/js/main.114329a5.chunk.js",
-    "main.js.map": "/Social-Network/static/js/main.114329a5.chunk.js.map",
-    "runtime-main.js": "/Social-Network/static/js/runtime-main.fded4e39.js",
-    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.fded4e39.js.map",
-    "static/js/2.54166eed.chunk.js": "/Social-Network/static/js/2.54166eed.chunk.js",
-    "static/js/2.54166eed.chunk.js.map": "/Social-Network/static/js/2.54166eed.chunk.js.map",
-    "static/js/3.a1405f39.chunk.js": "/Social-Network/static/js/3.a1405f39.chunk.js",
-    "static/js/3.a1405f39.chunk.js.map": "/Social-Network/static/js/3.a1405f39.chunk.js.map",
+    "main.css": "/Social-Network/static/css/main.53b4055f.chunk.css",
+    "main.js": "/Social-Network/static/js/main.97dd7354.chunk.js",
+    "main.js.map": "/Social-Network/static/js/main.97dd7354.chunk.js.map",
+    "runtime-main.js": "/Social-Network/static/js/runtime-main.a090f334.js",
+    "runtime-main.js.map": "/Social-Network/static/js/runtime-main.a090f334.js.map",
+    "static/js/2.cfedd900.chunk.js": "/Social-Network/static/js/2.cfedd900.chunk.js",
+    "static/js/2.cfedd900.chunk.js.map": "/Social-Network/static/js/2.cfedd900.chunk.js.map",
+    "static/js/3.69e1509e.chunk.js": "/Social-Network/static/js/3.69e1509e.chunk.js",
+    "static/js/3.69e1509e.chunk.js.map": "/Social-Network/static/js/3.69e1509e.chunk.js.map",
     "index.html": "/Social-Network/index.html",
-    "static/css/main.e892a32a.chunk.css.map": "/Social-Network/static/css/main.e892a32a.chunk.css.map",
-    "static/js/2.54166eed.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.54166eed.chunk.js.LICENSE.txt",
+    "static/css/main.53b4055f.chunk.css.map": "/Social-Network/static/css/main.53b4055f.chunk.css.map",
+    "static/js/2.cfedd900.chunk.js.LICENSE.txt": "/Social-Network/static/js/2.cfedd900.chunk.js.LICENSE.txt",
     "static/media/Logo.db1942f3.png": "/Social-Network/static/media/Logo.db1942f3.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.fded4e39.js",
-    "static/js/2.54166eed.chunk.js",
-    "static/css/main.e892a32a.chunk.css",
-    "static/js/main.114329a5.chunk.js"
+    "static/js/runtime-main.a090f334.js",
+    "static/js/2.cfedd900.chunk.js",
+    "static/css/main.53b4055f.chunk.css",
+    "static/js/main.97dd7354.chunk.js"
   ]
 }
